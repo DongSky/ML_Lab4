@@ -39,10 +39,7 @@ if __name__ == "__main__":
     img_vector = np.mat(img_vector)
     print(img_vector.shape)
     new_img_vector = np.mat(pca(img_vector,min(result.arg_n,img_vector.shape[1]))).astype(np.float64)
-    #print(new_img_vector)
     new_img_vector = new_img_vector / np.max(np.abs(new_img_vector))
-    #print(new_img_vector)
-    #print("--------")
     tot_psnr = 0.0
     for i in range(img_vector.shape[0]):
         tot_psnr += psnr(img_vector[i],new_img_vector[i])
@@ -50,7 +47,6 @@ if __name__ == "__main__":
     print("PSNR: ",tot_psnr)
     initPic = img_vector[0].reshape((int(250*resize),int(250*resize)))
     newPic = new_img_vector[0].reshape((int(250*resize),int(250*resize)))
-    #print(newPic)
     imsave(arr=initPic,fname="init.jpg")
     imsave(str(result.arg_n)+"_pca.jpg",newPic)
     # initPic = imread("test.jpg",as_grey=True)
